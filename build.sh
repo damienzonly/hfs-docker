@@ -6,7 +6,10 @@ if [ -z "$version" ]; then echo "provide VERSION env"; exit 1; fi
 
 image="$registry:$version"
 latest="$registry:latest"
-
+latest_command=
+if [[ "$is_latest" -eq "1" ]]; then
+  latest_command="-t $registry:latest"
+fi
 docker system prune -f
 docker rmi "$image"
 docker system prune -f
@@ -16,14 +19,8 @@ docker buildx build \
     --progress plain \
     --build-arg VERSION="$version" \
     --platform linux/amd64,linux/arm64 \
-    -t "$image" \
+    -t "$image" $latest_command\
     --build-arg version=$version \
     --push .
-
-if [[ "$is_latest" -eq "1" ]]; then
-  docker pull "$image"
-  docker tag "$image" "$latest"
-  docker push "$latest"
-fi
 docker buildx rm bld
 docker rmi "$image"

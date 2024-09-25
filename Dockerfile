@@ -5,7 +5,7 @@ WORKDIR /build
 ARG version
 ARG TARGETARCH
 
-RUN apk add --update build-base git jq zip
+RUN apk add --update build-base git jq zip libstdc++
 RUN git clone https://github.com/rejetto/hfs; \
     cd hfs; \
     git checkout "$version"; \
