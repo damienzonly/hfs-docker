@@ -9,7 +9,7 @@ docker run \
   -e HFS_PORT=8080 \
   -v ./hfsconf:/app/ \
   -v ./myDisk:/app/myDisk \
-  rejetto/hfs:0.53.0
+  rejetto/hfs:v0.53.0
 ```
 
 ## Environment Variables
@@ -28,7 +28,7 @@ version: '3'
 
 services:
   hfs:
-    image: rejetto/hfs:0.53.0
+    image: rejetto/hfs:v0.53.0
     volumes:
       - ./hfsconf:/app/ # for hfs conf persistence
       - ./myDisk:/app/myDisk # for your files

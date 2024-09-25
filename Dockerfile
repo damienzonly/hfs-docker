@@ -1,9 +1,10 @@
-FROM node:18-alpine as builder
+FROM node:20-alpine AS builder
 
 WORKDIR /build
 
-ARG arch
 ARG version
+ARG TARGETARCH
+
 RUN apk add --update build-base git jq zip
 RUN git clone https://github.com/rejetto/hfs; \
     cd hfs; \
@@ -13,8 +14,8 @@ RUN git clone https://github.com/rejetto/hfs; \
     npm run build-all; \
     npm run dist-pre; \
     cd dist; \
-    crc="$arch"; \
-    if [[ "$arch" == "amd64" ]]; then crc="x64"; fi; \
+    crc="$TARGETARCH"; \
+    if [[ "$TARGETARCH" == "amd64" ]]; then crc="x64"; fi; \
     npm i -f --no-save --omit=dev @node-rs/crc32-linux-$crc-gnu; \
     npx pkg . --public -C gzip -t node18-alpine-$crc
 
