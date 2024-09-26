@@ -18,7 +18,7 @@ Read [How to modify configuration](https://github.com/rejetto/hfs/blob/main/conf
 
 ## Mounts
 You can mount as many volumes as you wish in docker to persist the file storage, but keep in mind that if you want to persist HFS configurations as well you **must** mount a volume that points to the `cwd` of HFS (which you can override with `HFS_CWD` env).
-The default cwd of the container is `/app`
+The default hfs cwd of the container is `/home/hfs/.hfs`
 
 ## Docker compose example
 Create a `docker-compose.yaml` using the following template
@@ -30,7 +30,7 @@ services:
   hfs:
     image: rejetto/hfs:v0.53.0
     volumes:
-      - ./hfsconf:/app/ # for hfs conf persistence
+      - ./hfsconf:/home/hfs/.hfs # for hfs conf persistence
       - ./myDisk:/app/myDisk # for your files
       # don't forget to share volumes to access certificate files
     environment:
