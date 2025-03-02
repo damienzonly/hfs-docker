@@ -11,7 +11,7 @@ RUN git clone https://github.com/rejetto/hfs; \
     git checkout "$version"; \
     npm i; \
     npm audit fix; \
-    npm run build-all; \
+    npm i && npm run build-server && npm run build-frontend && npm run build-admin; \
     npm run dist-pre; \
     cd dist; \
     crc="$TARGETARCH"; \
