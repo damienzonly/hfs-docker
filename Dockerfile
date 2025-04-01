@@ -5,7 +5,7 @@ WORKDIR /build
 ARG version
 ARG TARGETARCH
 
-RUN apk add --update build-base git jq zip libstdc++
+RUN apk add --update build-base git jq zip
 RUN git clone https://github.com/rejetto/hfs; \
     cd hfs; \
     git checkout "$version"; \
@@ -21,7 +21,7 @@ RUN git clone https://github.com/rejetto/hfs; \
 
 FROM alpine:3.20
 WORKDIR /app
-RUN apk add --update zip
+RUN apk add --update zip libstdc++
 RUN adduser -h /home/hfs -D hfs hfs && \
     mkdir /home/hfs/.hfs && \
     cd /home/hfs/.hfs && \
