@@ -17,7 +17,7 @@ RUN git clone https://github.com/rejetto/hfs; \
     crc="$TARGETARCH"; \
     if [[ "$TARGETARCH" == "amd64" ]]; then crc="x64"; fi; \
     npm i -f --no-save --omit=dev @node-rs/crc32-linux-$crc-gnu; \
-    npx pkg . --public -C gzip -t node18-alpine-$crc
+    npx pkg . --public -C gzip -t node20-alpine-$crc
 
 FROM alpine:3.20
 WORKDIR /app
