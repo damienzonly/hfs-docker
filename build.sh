@@ -11,7 +11,7 @@ if [[ "$is_latest" -eq "1" ]]; then
   latest_command="-t $registry:latest"
 fi
 docker system prune -f
-docker rmi "$image"
+docker rmi "$image" || true
 docker system prune -f
 docker buildx create --name bld --use
 docker buildx inspect bld --bootstrap
@@ -23,4 +23,3 @@ docker buildx build \
     --build-arg version=$version \
     --push .
 docker buildx rm bld
-docker rmi "$image"
