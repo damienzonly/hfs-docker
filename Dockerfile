@@ -21,7 +21,7 @@ RUN git clone https://github.com/rejetto/hfs; \
 
 FROM alpine:3.20
 WORKDIR /app
-RUN apk add --update zip libstdc++
+RUN apk add --update zip libstdc++ ffmpeg
 RUN adduser -h /home/hfs -D hfs hfs && \
     mkdir /home/hfs/.hfs && \
     cd /home/hfs/.hfs && \
