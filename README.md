@@ -9,7 +9,7 @@ docker run \
   -e HFS_PORT=8080 \
   -v ./hfsconf:/home/hfs/.hfs \
   # -v ./myDisk:/app/myDisk \
-  rejetto/hfs:v0.53.0
+  rejetto/hfs:latest
   # add any other volume with -v for every external drive you want to mount into the hfs container
 ```
 
@@ -34,7 +34,7 @@ version: '3'
 services:
   hfs:
     network_mode: host
-    image: rejetto/hfs:v0.53.0
+    image: rejetto/hfs:latest
     volumes:
       - ./hfsconf:/home/hfs/.hfs # for hfs conf persistence
       # don't forget to share volumes for SSL certificates if you have any
